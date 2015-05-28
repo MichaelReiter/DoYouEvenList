@@ -1,1 +1,8 @@
-/* Empty. Add your own CSS if you like */
+h1 {
+	font-family: "Avenir Next", "Helvetica Neue", sans-serif;
+}
+
+ion-item.item {
+	background-color: #BBBBBB;
+	color: #FFFFFF;
+}
