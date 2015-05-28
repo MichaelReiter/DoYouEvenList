@@ -1,19 +1,48 @@
-app = angular.module('dyel', ['ionic'])
+var app = angular.module('dyel', ['ionic'])
 
-.controller('DoYouEvenListController', function($scope) {
+app.config(function($stateProvider, $urlRouterProvider) {
+  
+  $urlRouterProvider.otherwise("/");
+
+  $stateProvider
+
+  .state('index', {
+    url: "/",
+    templateUrl: 'home.html'
+  })
+  .state('ARMS', {
+    url: "/",
+    templateUrl: 'ARMS.html'
+  })
+  .state('LEGS', {
+    url: "/",
+    templateUrl: 'LEGS.html'
+  })
+  .state('CHEST', {
+    url: "/",
+    templateUrl: 'CHEST.html'
+  })
+  .state('ABS', {
+    url: "/",
+    templateUrl: 'ABS.html'
+  })
+  .state('BACK', {
+    url: "/",
+    templateUrl: 'BACK.html'
+  })
+  .state('CARDIO', {
+    url: "/",
+    templateUrl: 'CARDIO.html'
+  });
+
+})
+
+app.controller('IndexCtrl', function($scope) {
 
   $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "CARDIO"];
 
   $scope.addExercise = function() {
     alert(window.screen.availHeight);
-  };
-
-  $scope.getItemHeight = function() {
-    return ((window.screen.height - 64) / this.exerciseAreas.length) + 1;
-  };
-
-  $scope.getItemWidth = function() {
-    return window.screen.width;
   };
 
 });

@@ -1,8 +1,13 @@
-h1 {
-	font-family: "Avenir Next", "Helvetica Neue", sans-serif;
+.slide-right-left-ios7 {
+	font-family: "Times New Roman", "Avenir Next", "Helvetica Neue", sans-serif;
 }
 
-ion-item.item {
-	background-color: #BBBBBB;
-	color: #FFFFFF;
+.button.button-full {
+	height: 6.28em;
+	width: 100%;
+	margin: 0;
+}
+
+.button button-full button-assertive {
+	color: blue;
 }

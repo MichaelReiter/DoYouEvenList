@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="dyel">
   <head>
     <meta charset="utf-8">
-    <title>Todo</title>
+    <title>Do You Even List</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -11,20 +11,15 @@
     <script src="cordova.js"></script>
   </head>
 
-  <body ng-app="dyel" ng-controller="DoYouEvenListController">
+  <body ng-controller="IndexCtrl">
 
-  <ion-header-bar class="bar bar-header bar-dark" align-title="center">
-    <h1 class="title">DO YOU EVEN LIST</h1>
-    <button class="button button-icon ion-ios-plus-empty" ng-click="addExercise()"></button>
-  </ion-header-bar>
+    <ion-nav-bar class="nav-title-slide-ios7 bar-dark" align-title="center">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
 
-  <ion-content has-bouncing="false">
-    <ion-list>
-      <ion-item collection-repeat="area in exerciseAreas" item-height="getItemHeight()" item-width="getItemWidth()">
-        <div class="exerciseArea">{{area}}</div>
-      </ion-item>
-    </ion-list>
-  </ion-content>
+    <ion-nav-view animation="slide-left-right">
+    </ion-nav-view>
 
   </body>
 </html>
