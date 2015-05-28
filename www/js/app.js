@@ -41,8 +41,22 @@ app.controller('IndexCtrl', function($scope) {
 
   $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "CARDIO"];
 
+  $scope.bicepExercises = [
+    {title: "seated dumbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
+    {title: "barbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
+    {title: "preacher curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
+  ];
+
+  $scope.tricepExercises = [
+    {title: "tricep pushdown", sets: 4, reps: 8, weight: 20, units: "kilograms"},
+  ];
+
   $scope.addExercise = function() {
     alert(window.screen.availHeight);
   };
+
+  $scope.getItemHeight = function() {
+    return (window.screen.height) / 6;
+  }
 
 });

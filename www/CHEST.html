@@ -1,5 +1,19 @@
 <ion-view title="CHEST" class="slide-right-left-ios7">
-  <ion-content class="has-header" scroll="false">
-    
+  <ion-content class="has-header">
+  	<ion-list>
+
+  		<!-- BICEPS -->
+		  <div class="item item-divider">
+		    BICEPS
+		  </div>
+		  <ion-item collection-repeat="exercise in bicepExercises" item-height="getItemHeight()">
+		    <div class="bold">{{exercise.title.toUpperCase()}}</div>
+		    <br>
+		    {{exercise.weight + " " + exercise.units.toUpperCase()}}
+		    <br>
+		    {{exercise.reps + " " + "REPS"}}
+		  </ion-item>
+
+		</ion-list>
   </ion-content>
 </ion-view>

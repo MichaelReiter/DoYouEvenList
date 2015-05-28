@@ -1,5 +1,5 @@
-.slide-right-left-ios7 {
-	font-family: "Times New Roman", "Avenir Next", "Helvetica Neue", sans-serif;
+.slide-right-left-ios7, .font {
+	font-family: "Avenir Next", "Helvetica Neue", sans-serif;
 }
 
 .button.button-full {
@@ -8,6 +8,6 @@
 	margin: 0;
 }
 
-.button button-full button-assertive {
-	color: blue;
+.bold {
+	font-weight: bold;
 }
