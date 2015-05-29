@@ -1,7 +1,7 @@
-<ion-view title="ABS" class="slide-right-left-ios7">
+<ion-view title="ABS">
 
 	<ion-nav-buttons side="secondary">
-    <button class="button button-icon ion-ios-plus-empty" ng-click="addExercise()">
+    <button class="button button-icon ion-ios-plus-empty" ui-sref="NEW EXERCISE">
     </button>
   </ion-nav-buttons>
 
@@ -13,7 +13,7 @@
 		    BICEPS
 		  </div>
 		  <ion-item collection-repeat="exercise in bicepExercises" item-height="getItemHeight()">
-		    <div class="bold">{{exercise.title.toUpperCase()}}</div>
+		    <div class="exerciseTitle">{{exercise.title.toUpperCase()}}</div>
 		    <br>
 		    {{exercise.weight + " " + exercise.units.toUpperCase()}}
 		    <br>

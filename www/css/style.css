@@ -1,13 +1,13 @@
-.slide-right-left-ios7, .font {
+.font {
 	font-family: "Avenir Next", "Helvetica Neue", sans-serif;
 }
 
 .button.button-full {
-	height: 6.28em;
+	height: 15.07vh;
 	width: 100%;
 	margin: 0;
 }
 
-.bold {
+.exerciseTitle, .input-label {
 	font-weight: bold;
 }

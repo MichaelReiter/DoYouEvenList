@@ -41,7 +41,38 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 })
 
-app.controller('IndexCtrl', function($scope) {
+app.controller('IndexCtrl', function($scope, $ionicModal) {
+
+  //For bringing up a new exercise modal pane
+  $ionicModal.fromTemplateUrl('newExercise.html', {
+    scope: $scope,
+    animation: 'slide-in-up'
+  }).then(function(modal) {
+    $scope.modal = modal;
+  });
+
+  $scope.openModal = function() {
+    $scope.modal.show();
+  };
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+
+  //Cleanup the modal when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+
+  // Execute action on hide modal
+  $scope.$on('modal.hidden', function() {
+    // Execute action
+  });
+
+  // Execute action on remove modal
+  $scope.$on('modal.removed', function() {
+    // Execute action
+  });
 
   $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "CARDIO"];
 
@@ -49,6 +80,9 @@ app.controller('IndexCtrl', function($scope) {
     {title: "seated dumbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
     {title: "barbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
     {title: "preacher curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
+    {title: "EZ bar curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
+    {title: "concentration curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
+    {title: "hammer curls", sets: 4, reps: 8, weight: 20, units: "kilograms"}
   ];
 
   $scope.tricepExercises = [
@@ -60,7 +94,7 @@ app.controller('IndexCtrl', function($scope) {
   };
 
   $scope.getItemHeight = function() {
-    return (window.screen.height) / 6;
+    return 115;
   }
 
 });

@@ -1,14 +1,25 @@
-<ion-view title="NEW EXERCISE" class="slide-right-left-ios7">
-  <ion-content class="has-header">
-  	<div class="list">
-		  <label class="item item-input item-stacked-label">
-		    <span class="input-label">Exercise Name</span>
-		    <input type="text" placeholder="John">
-		  </label>
-		  <label class="item item-input item-stacked-label">
-		    <span class="input-label">Weight</span>
-		    <input type="number" placeholder="25">
-		  </label>
-		</div>
-  </ion-content>
-</ion-view>
+<div class="modal">
+  <ion-view title="NEW EXERCISE" class="slide-right-left-ios7">
+	  <ion-content class="has-header">
+	  	<div class="list">
+			  <label class="item item-input item-stacked-label">
+			    <span class="input-label">NAME</span>
+			    <input type="text" placeholder="BICEP CURLS">
+			  </label>
+			  <label class="item item-input item-stacked-label">
+			    <span class="input-label">WEIGHT</span>
+			    <input type="number" placeholder="9001" min="0" step="1" pattern="\d*" required >
+			  </label>
+			  <label class="item item-input item-stacked-label">
+			    <span class="input-label">REPS</span>
+			    <input type="number" placeholder="10" min="1" step="1" pattern="\d*" required >
+			  </label>
+			  <label class="item item-input item-stacked-label">
+			    <span class="input-label">SETS</span>
+			    <input type="number" placeholder="3" min="1" step="1" pattern="\d*" required >
+			  </label>
+			</div>
+	  </ion-content>
+	</ion-view>
+
+</div>
