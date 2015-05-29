@@ -1,4 +1,10 @@
 <ion-view title="ARMS" class="slide-right-left-ios7">
+
+	<ion-nav-buttons side="secondary">
+    <button class="button button-icon ion-ios-plus-empty" ng-click="addExercise()">
+    </button>
+  </ion-nav-buttons>
+
   <ion-content class="has-header">
   	<ion-list>
 
@@ -13,7 +19,6 @@
 		    <br>
 		    {{exercise.reps + " " + "REPS"}}
 		  </ion-item>
-
 
   		<!-- TRICEPS
 		  <div class="item item-divider">

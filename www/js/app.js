@@ -33,6 +33,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('CARDIO', {
     url: "/",
     templateUrl: 'CARDIO.html'
+  })
+  .state('NEW EXERCISE', {
+    url: "/",
+    templateUrl: 'newExercise.html'
   });
 
 })
