@@ -6,13 +6,16 @@
   </ion-nav-buttons>
 
   <ion-content class="has-header">
-  	<ion-list>
+  	<ion-list can-swipe="listCanSwipe">
 
   		<!-- BICEPS -->
 		  <div class="item item-divider">
 		    BICEPS
 		  </div>
-		  <ion-item collection-repeat="exercise in exercises" item-height="getItemHeight()">
+		  <ion-item collection-repeat="exercise in exercises" class="exerciseListItem" item-height="getItemHeight()">
+	      <ion-option-button class="button-assertive" ng-click="debugFunction()">
+    		Delete
+		    </ion-option-button>
 		    <div class="exerciseTitle">{{exercise.title.toUpperCase()}}</div>
 		    <div class="exerciseDetails">
 			    {{exercise.weight + " " + exercise.units.toUpperCase()}}

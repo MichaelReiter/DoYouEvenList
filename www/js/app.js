@@ -75,6 +75,8 @@ app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
     $scope.newExerciseModal.remove();
   });
 
+  $scope.listCanSwipe = true;
+
   $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "CARDIO"];
 
   $scope.exercises = [
@@ -92,7 +94,7 @@ app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
 
   //temporary until I find a better solution
   $scope.getItemHeight = function() {
-    return 95;
+    return 90;
   }
 
   $scope.debugFunction = function() {
