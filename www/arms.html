@@ -1,7 +1,7 @@
 <ion-view title="ARMS">
 
 	<ion-nav-buttons side="secondary">
-    <button class="button button-icon ion-ios-plus-empty" ui-sref="NEW EXERCISE">
+    <button class="button button-icon ion-ios-plus-empty" ng-click="newExercise()">
     </button>
   </ion-nav-buttons>
 
@@ -12,19 +12,20 @@
 		  <div class="item item-divider">
 		    BICEPS
 		  </div>
-		  <ion-item collection-repeat="exercise in bicepExercises" item-height="getItemHeight()">
+		  <ion-item collection-repeat="exercise in exercises" item-height="getItemHeight()">
 		    <div class="exerciseTitle">{{exercise.title.toUpperCase()}}</div>
-		    <br>
-		    {{exercise.weight + " " + exercise.units.toUpperCase()}}
-		    <br>
-		    {{exercise.reps + " " + "REPS"}}
+		    <div class="exerciseDetails">
+			    {{exercise.weight + " " + exercise.units.toUpperCase()}}
+			    <br>
+			    {{exercise.sets + " " + "SETS, " + exercise.reps + " " + "REPS"}}
+		  	</div>
 		  </ion-item>
 
   		<!-- TRICEPS
 		  <div class="item item-divider">
 		    TRICEPS
 		  </div>
-		  <ion-item collection-repeat="exercise in tricepExercises" item-height="getItemHeight()">
+		  <ion-item collection-repeat="exercise in exercises" item-height="getItemHeight()">
 		    <div class="bold">{{exercise.title.toUpperCase()}}</div>
 		    <br>
 		    {{exercise.weight + " " + exercise.units.toUpperCase()}}

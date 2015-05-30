@@ -1,24 +1,50 @@
 <div class="modal">
-  <ion-view title="NEW EXERCISE" class="slide-right-left-ios7">
-	  <ion-content class="has-header">
-	  	<div class="list">
-			  <label class="item item-input item-stacked-label">
-			    <span class="input-label">NAME</span>
-			    <input type="text" placeholder="BICEP CURLS">
-			  </label>
-			  <label class="item item-input item-stacked-label">
-			    <span class="input-label">WEIGHT</span>
-			    <input type="number" placeholder="9001" min="0" step="1" pattern="\d*" required >
-			  </label>
-			  <label class="item item-input item-stacked-label">
-			    <span class="input-label">REPS</span>
-			    <input type="number" placeholder="10" min="1" step="1" pattern="\d*" required >
-			  </label>
-			  <label class="item item-input item-stacked-label">
-			    <span class="input-label">SETS</span>
-			    <input type="number" placeholder="3" min="1" step="1" pattern="\d*" required >
-			  </label>
-			</div>
+  <ion-header-bar class="bar-dark">
+    <h1 class="title">NEW EXERCISE</h1>
+    <div class="buttons">
+    	<button class="button button-clear" ng-click="closeNewExercise()">Cancel</button>
+    </div>
+  </ion-header-bar>
+  <ion-view>
+	  <ion-content class="has-header" has-bouncing="false">
+		  <form ng-submit="createExercise(exercise)">
+		  	<div class="list">
+				  <label class="item item-input item-stacked-label">
+				    <span class="input-label">NAME</span>
+				    <input type="text" placeholder="BICEP CURLS" ng-model="exercise.title">
+				  </label>
+				  <label class="item item-input item-stacked-label">
+				    <span class="input-label">WEIGHT</span>
+				    <input type="number" placeholder="9001" ng-model="exercise.weight" min="0" step="1" pattern="\d*" required >
+				  </label>
+				  <label class="item item-input item-stacked-label">
+						<span class="bold">UNITS</span>
+				  </label>
+			    <label class="item item-radio">
+				    <input type="radio" name="group">
+				    <div class="item-content">
+				      KILOGRAMS
+				    </div>
+				    <i class="radio-icon ion-checkmark"></i>
+				  </label>
+			    <label class="item item-radio">
+				    <input type="radio" name="group">
+				    <div class="item-content">
+				      POUNDS
+				    </div>
+				    <i class="radio-icon ion-checkmark"></i>
+				  </label>
+				  <label class="item item-input item-stacked-label">
+				    <span class="input-label">REPS</span>
+				    <input type="number" placeholder="10" ng-model="exercise.reps" min="1" step="1" pattern="\d*" required >
+				  </label>
+				  <label class="item item-input item-stacked-label">
+				    <span class="input-label">SETS</span>
+				    <input type="number" placeholder="3" ng-model="exercise.sets" min="1" step="1" pattern="\d*" required >
+				  </label>
+				</div>
+				<button type="submit" class="button button-full button-assertive">ADD EXERCISE</button>
+			</form>
 	  </ion-content>
 	</ion-view>
 

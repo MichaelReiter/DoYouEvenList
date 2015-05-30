@@ -41,42 +41,43 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 })
 
-app.controller('IndexCtrl', function($scope, $ionicModal) {
+app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
 
   //For bringing up a new exercise modal pane
-  $ionicModal.fromTemplateUrl('newExercise.html', {
+  $ionicModal.fromTemplateUrl('newExercise.html', function(modal) {
+    $scope.newExerciseModal = modal;
+  }, {
     scope: $scope,
     animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal = modal;
   });
 
-  $scope.openModal = function() {
-    $scope.modal.show();
+  $scope.createExercise = function(exercise) {
+    $scope.exercises.push({
+      title: exercise.title,
+      sets: exercise.sets,
+      reps: exercise.reps,
+      weight: exercise.weight,
+      units: exercise.units
+    });
+    $scope.newExerciseModal.hide();
+    exercise.title = "";
   };
 
-  $scope.closeModal = function() {
-    $scope.modal.hide();
+  $scope.newExercise = function() {
+    $scope.newExerciseModal.show();
   };
 
-  //Cleanup the modal when we're done with it!
+  $scope.closeNewExercise = function() {
+    $scope.newExerciseModal.hide();
+  };
+
   $scope.$on('$destroy', function() {
-    $scope.modal.remove();
-  });
-
-  // Execute action on hide modal
-  $scope.$on('modal.hidden', function() {
-    // Execute action
-  });
-
-  // Execute action on remove modal
-  $scope.$on('modal.removed', function() {
-    // Execute action
+    $scope.newExerciseModal.remove();
   });
 
   $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "CARDIO"];
 
-  $scope.bicepExercises = [
+  $scope.exercises = [
     {title: "seated dumbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
     {title: "barbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
     {title: "preacher curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
@@ -89,12 +90,16 @@ app.controller('IndexCtrl', function($scope, $ionicModal) {
     {title: "tricep pushdown", sets: 4, reps: 8, weight: 20, units: "kilograms"},
   ];
 
-  $scope.addExercise = function() {
-    alert(window.screen.availHeight);
-  };
-
+  //temporary until I find a better solution
   $scope.getItemHeight = function() {
-    return 115;
+    return 95;
+  }
+
+  $scope.debugFunction = function() {
+    $ionicPopup.alert({
+      title: 'DEBUG ALERT',
+      template: 'Debug message here.'
+    });
   }
 
 });

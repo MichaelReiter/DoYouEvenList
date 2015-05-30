@@ -12,12 +12,13 @@
 		  <div class="item item-divider">
 		    BICEPS
 		  </div>
-		  <ion-item collection-repeat="exercise in bicepExercises" item-height="getItemHeight()">
+		  <ion-item collection-repeat="exercise in exercises" item-height="getItemHeight()">
 		    <div class="exerciseTitle">{{exercise.title.toUpperCase()}}</div>
-		    <br>
-		    {{exercise.weight + " " + exercise.units.toUpperCase()}}
-		    <br>
-		    {{exercise.reps + " " + "REPS"}}
+		    <div class="exerciseDetails">
+			    {{exercise.weight + " " + exercise.units.toUpperCase()}}
+			    <br>
+			    {{exercise.sets + " " + "SETS, " + exercise.reps + " " + "REPS"}}
+		  	</div>
 		  </ion-item>
 
 		</ion-list>

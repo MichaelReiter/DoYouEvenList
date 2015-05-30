@@ -1,13 +1,13 @@
-.font {
-	font-family: "Avenir Next", "Helvetica Neue", sans-serif;
-}
-
-.button.button-full {
+.button.button-full.exercises {
 	height: 15.07vh;
 	width: 100%;
 	margin: 0;
 }
 
-.exerciseTitle, .input-label {
+.exerciseTitle, .input-label, .bold {
 	font-weight: bold;
+}
+
+.exerciseDetails {
+	color: #999999;
 }
