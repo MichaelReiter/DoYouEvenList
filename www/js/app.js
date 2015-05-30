@@ -75,8 +75,6 @@ app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
     $scope.newExerciseModal.remove();
   });
 
-  $scope.listCanSwipe = true;
-
   $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "CARDIO"];
 
   $scope.exercises = [
