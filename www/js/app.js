@@ -37,6 +37,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('NEW EXERCISE', {
     url: "/",
     templateUrl: 'newExercise.html'
+  })
+  .state('EXERCISE DETAILS', {
+    url: "/",
+    templateUrl: 'exerciseDetails.html'
   });
 
 })
@@ -61,6 +65,10 @@ app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
     });
     $scope.newExerciseModal.hide();
     exercise.title = "";
+    exercise.sets = "";
+    exercise.reps = "";
+    exercise.weight = "";
+    exercise.units = "";
   };
 
   $scope.newExercise = function() {
@@ -74,6 +82,30 @@ app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
   $scope.$on('$destroy', function() {
     $scope.newExerciseModal.remove();
   });
+
+  $scope.units = [
+    {value: "kilograms"},
+    {value: "pounds"}
+  ];
+
+  $scope.weightRange = [];
+  for (var i = 1; i <= 500; i++) {
+    $scope.weightRange.push(i);
+  }
+
+  $scope.repsRange = [];
+  for (var i = 1; i <= 20; i++) {
+    $scope.repsRange.push(i);
+  }
+
+  $scope.setsRange = [];
+  for (var i = 1; i <= 10; i++) {
+    $scope.setsRange.push(i);
+  }
+
+  $scope.data = {
+    value: 'kilograms'
+  };
 
   $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "CARDIO"];
 

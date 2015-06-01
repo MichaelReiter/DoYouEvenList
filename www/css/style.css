@@ -11,3 +11,7 @@
 .exerciseDetails {
 	color: #999999;
 }
+
+.title.padded {
+	background-color: red;
+}
