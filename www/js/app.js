@@ -56,19 +56,26 @@ app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
   });
 
   $scope.createExercise = function(exercise) {
-    $scope.exercises.push({
-      title: exercise.title,
-      sets: exercise.sets,
-      reps: exercise.reps,
-      weight: exercise.weight,
-      units: exercise.units
-    });
-    $scope.newExerciseModal.hide();
-    exercise.title = "";
-    exercise.sets = "";
-    exercise.reps = "";
-    exercise.weight = "";
-    exercise.units = "";
+    if (exercise.title != null && exercise.title != "" && exercise.sets != null && exercise.reps != null && exercise.weight != null && exercise.units != null) {
+      $scope.exercises.push({
+        title: exercise.title,
+        sets: exercise.sets,
+        reps: exercise.reps,
+        weight: exercise.weight,
+        units: exercise.units
+      });
+      $scope.newExerciseModal.hide();
+      exercise.title = "";
+      exercise.sets = "";
+      exercise.reps = "";
+      exercise.weight = "";
+      exercise.units = "";
+    } else {
+      $ionicPopup.alert({
+        title: 'INVALID INPUT',
+        template: 'You must fill out all fields.'
+      });
+    }
   };
 
   $scope.newExercise = function() {
@@ -82,11 +89,6 @@ app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
   $scope.$on('$destroy', function() {
     $scope.newExerciseModal.remove();
   });
-
-  $scope.units = [
-    {value: "kilograms"},
-    {value: "pounds"}
-  ];
 
   $scope.weightRange = [];
   for (var i = 1; i <= 500; i++) {
@@ -116,10 +118,6 @@ app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
     {title: "EZ bar curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
     {title: "concentration curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
     {title: "hammer curls", sets: 4, reps: 8, weight: 20, units: "kilograms"}
-  ];
-
-  $scope.tricepExercises = [
-    {title: "tricep pushdown", sets: 4, reps: 8, weight: 20, units: "kilograms"},
   ];
 
   //temporary until I find a better solution

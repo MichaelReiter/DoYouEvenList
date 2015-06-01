@@ -15,7 +15,7 @@
 		  	<div class="list">
 
 		  		<!-- NAME -->
-				  <label class="item item-input item-stacked-label">
+				  <label class="item item-input item-inline-label">
 				    <span class="input-label">NAME</span>
 				    <input type="text" placeholder="BICEP CURLS" ng-model="exercise.title">
 				  </label>
@@ -31,12 +31,15 @@
 				  </label>
 
 				  <!-- UNITS -->
-				  <label class="item item-input item-stacked-label">
-						<span class="bold">UNITS</span>
+					<label class="item item-input item-select">
+				    <div class="input-label">
+				     	UNITS
+				    </div>
+				    <select ng-model="exercise.units">
+				      <option selected>KILOGRAMS</option>
+				      <option>POUNDS</option>
+				    </select>
 				  </label>
-					<ion-radio ng-repeat="unit in units" ng-value="unit.value" ng-model="data.value">
-						{{unit.value.toUpperCase()}}
-					</ion-radio>
 
 					<!-- REPS -->
 					<label class="item item-input item-select">
@@ -60,7 +63,9 @@
 				</div>
 
 				<!-- SUBMIT BUTTON -->
-				<button type="submit" class="button button-full button-assertive" ng-click="exercise.units = data.value">ADD EXERCISE</button>
+				<div class="buttons submit">
+					<button type="submit" class="button button-block button-positive" ng-click="exercise.units = data.value">ADD EXERCISE</button>
+				</div>
 			</form>
 	  </ion-content>
 	</ion-view>

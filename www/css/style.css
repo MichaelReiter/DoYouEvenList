@@ -12,6 +12,6 @@
 	color: #999999;
 }
 
-.title.padded {
-	background-color: red;
+.buttons.submit {
+	margin: 20px;
 }
