@@ -78,6 +78,10 @@ app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
     }
   };
 
+  $scope.submitForm = function(exercise) {
+    createExercise(exercise);
+  }
+
   $scope.newExercise = function() {
     $scope.newExerciseModal.show();
   };
@@ -109,6 +113,11 @@ app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
     value: 'kilograms'
   };
 
+  $scope.units = [
+    "kilograms",
+    "pounds"
+  ];
+
   $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "CARDIO"];
 
   $scope.exercises = [
@@ -129,6 +138,13 @@ app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
     $ionicPopup.alert({
       title: 'DEBUG ALERT',
       template: 'Debug message here.'
+    });
+  }
+
+  $scope.log = function(input) {
+    $ionicPopup.alert({
+      title: 'DEBUG ALERT',
+      template: input
     });
   }
 
