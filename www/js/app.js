@@ -45,7 +45,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 })
 
-app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
+app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
+
+  //For pulling exercises from a rails server
+
+  $http.get('http://localhost:3000/api/exercises')
+    .success(function(exercises) {
+      $scope.exercises = exercises;
+    })
+    .error(function(data) {
+      console.log('A serverside error occured.');
+    });
+  
 
   //For bringing up a new exercise modal pane
   $ionicModal.fromTemplateUrl('newExercise.html', function(modal) {
@@ -56,16 +67,16 @@ app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
   });
 
   $scope.createExercise = function(exercise) {
-    if (exercise.title != null && exercise.title != "" && exercise.sets != null && exercise.reps != null && exercise.weight != null && exercise.units != null) {
+    if (exercise.name != null && exercise.name != "" && exercise.sets != null && exercise.reps != null && exercise.weight != null && exercise.units != null) {
       $scope.exercises.push({
-        title: exercise.title,
+        name: exercise.name,
         sets: exercise.sets,
         reps: exercise.reps,
         weight: exercise.weight,
         units: exercise.units
       });
       $scope.newExerciseModal.hide();
-      exercise.title = "";
+      exercise.name = "";
       exercise.sets = "";
       exercise.reps = "";
       exercise.weight = "";
@@ -120,14 +131,16 @@ app.controller('IndexCtrl', function($scope, $ionicModal, $ionicPopup) {
 
   $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "CARDIO"];
 
+  /*
   $scope.exercises = [
-    {title: "seated dumbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
-    {title: "barbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
-    {title: "preacher curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
-    {title: "EZ bar curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
-    {title: "concentration curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
-    {title: "hammer curls", sets: 4, reps: 8, weight: 20, units: "kilograms"}
+    {name: "seated dumbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
+    {name: "barbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
+    {name: "preacher curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
+    {name: "EZ bar curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
+    {name: "concentration curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
+    {name: "hammer curls", sets: 4, reps: 8, weight: 20, units: "kilograms"}
   ];
+  */
 
   //temporary until I find a better solution
   $scope.getItemHeight = function() {
