@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  weight: MyString
+  sets: MyString
+  reps: MyString
+  units: MyString
+
+two:
+  name: MyString
+  weight: MyString
+  sets: MyString
+  reps: MyString
+  units: MyString
