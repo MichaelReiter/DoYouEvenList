@@ -75,7 +75,8 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
         sets: exercise.sets,
         reps: exercise.reps,
         weight: exercise.weight,
-        units: exercise.units
+        units: exercise.units,
+        done: false
       });
 
       /*
@@ -146,20 +147,32 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
   $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "CARDIO"];
 
   $scope.exercises = [
-    {name: "seated dumbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
-    {name: "barbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
-    {name: "preacher curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
-    {name: "EZ bar curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
-    {name: "concentration curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
-    {name: "hammer curls", sets: 4, reps: 8, weight: 20, units: "kilograms"}
+    {name: "seated dumbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
+    {name: "barbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
+    {name: "preacher curls", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
+    {name: "EZ bar curls", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
+    {name: "concentration curls", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
+    {name: "hammer curls", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false}
   ];
+
+  $scope.setDone = function(exercise) {
+    exercise.done = !exercise.done;
+  }
+
+  $scope.iconSelector = function(input) {
+    if (!input.done) {
+      return "ion-android-checkbox-outline-blank"
+    } else {
+      return "ion-android-checkbox-outline"
+    }
+  }
 
   //temporary until I find a better solution
   $scope.getItemHeight = function() {
     return 90;
   }
 
-  $scope.debugFunction = function() {
+  $scope.debugFunction = function(input) {
     $ionicPopup.alert({
       title: 'DEBUG ALERT',
       template: 'Debug message here.'
