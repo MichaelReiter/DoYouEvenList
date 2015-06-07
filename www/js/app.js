@@ -47,6 +47,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
 
+  /*
   //For pulling exercises from a rails server
 
   $http.get('http://localhost:3000/api/exercises')
@@ -56,6 +57,7 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
     .error(function(data) {
       console.log('A serverside error occured.');
     });
+  */
   
 
   //For bringing up a new exercise modal pane
@@ -67,7 +69,7 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
   });
 
   $scope.createExercise = function(exercise) {
-    if (exercise.name != null && exercise.name != "" && exercise.sets != null && exercise.reps != null && exercise.weight != null && exercise.units != null) {
+      
       $scope.exercises.push({
         name: exercise.name,
         sets: exercise.sets,
@@ -75,18 +77,30 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
         weight: exercise.weight,
         units: exercise.units
       });
+
+      /*
+      //For posting to a server
+      $http.post('http://localhost:3000/api/exercises', {
+        name: exercise.name,
+        sets: exercise.sets,
+        reps: exercise.reps,
+        weight: exercise.weight,
+        units: exercise.units
+      })
+        .success(function(exercises) {
+          alert("it worked");
+        })
+        .error(function(data) {
+          alert("nope");
+        });
+      */
+
       $scope.newExerciseModal.hide();
       exercise.name = "";
       exercise.sets = "";
       exercise.reps = "";
       exercise.weight = "";
       exercise.units = "";
-    } else {
-      $ionicPopup.alert({
-        title: 'INVALID INPUT',
-        template: 'You must fill out all fields.'
-      });
-    }
   };
 
   $scope.submitForm = function(exercise) {
@@ -131,7 +145,6 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
 
   $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "CARDIO"];
 
-  /*
   $scope.exercises = [
     {name: "seated dumbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
     {name: "barbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
@@ -140,7 +153,6 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
     {name: "concentration curls", sets: 4, reps: 8, weight: 20, units: "kilograms"},
     {name: "hammer curls", sets: 4, reps: 8, weight: 20, units: "kilograms"}
   ];
-  */
 
   //temporary until I find a better solution
   $scope.getItemHeight = function() {

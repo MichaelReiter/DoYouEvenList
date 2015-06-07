@@ -15,11 +15,11 @@
 	      <ion-option-button class="button-calm" ui-sref="EXERCISE DETAILS">
 	      	<p>&nbsp;&nbsp;&nbsp;</p>EDIT<p>&nbsp;&nbsp;&nbsp;</p>
 		    </ion-option-button>
-		    <div class="exerciseTitle">{{exercise.name.toUpperCase()}}</div>
+		    <div class="exerciseTitle"><i class="icon ion-android-checkbox-outline-blank"></i>&nbsp;&nbsp;&nbsp;{{exercise.name.toUpperCase()}}</div>
 		    <div class="exerciseDetails">
-			    {{exercise.weight + " " + exercise.units.toUpperCase()}}
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{exercise.weight + " " + exercise.units.toUpperCase()}}
 			    <br>
-			    {{exercise.sets + " " + "SETS, " + exercise.reps + " " + "REPS"}}
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{exercise.sets + " " + "SETS, " + exercise.reps + " " + "REPS"}}
 		  	</div>
 		  </ion-item>
 
