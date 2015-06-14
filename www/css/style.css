@@ -15,3 +15,7 @@
 .buttons.submit {
 	margin: 20px;
 }
+
+ion-item.done {
+	background-color: #cccccc;
+}

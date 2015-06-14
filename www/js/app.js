@@ -12,27 +12,27 @@ app.config(function($stateProvider, $urlRouterProvider) {
   })
   .state('ARMS', {
     url: "/",
-    templateUrl: 'ARMS.html'
+    templateUrl: 'arms.html'
   })
   .state('LEGS', {
     url: "/",
-    templateUrl: 'LEGS.html'
+    templateUrl: 'legs.html'
   })
   .state('CHEST', {
     url: "/",
-    templateUrl: 'CHEST.html'
+    templateUrl: 'chest.html'
   })
   .state('ABS', {
     url: "/",
-    templateUrl: 'ABS.html'
+    templateUrl: 'abs.html'
   })
   .state('BACK', {
     url: "/",
-    templateUrl: 'BACK.html'
+    templateUrl: 'back.html'
   })
   .state('CARDIO', {
     url: "/",
-    templateUrl: 'CARDIO.html'
+    templateUrl: 'cardio.html'
   })
   .state('NEW EXERCISE', {
     url: "/",
@@ -43,7 +43,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'exerciseDetails.html'
   });
 
-})
+});
 
 app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
 
@@ -58,7 +58,6 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
       console.log('A serverside error occured.');
     });
   */
-  
 
   //For bringing up a new exercise modal pane
   $ionicModal.fromTemplateUrl('newExercise.html', function(modal) {
@@ -70,7 +69,7 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
 
   $scope.createExercise = function(exercise) {
       
-      $scope.exercises.push({
+      $scope.armExercises.push({
         name: exercise.name,
         sets: exercise.sets,
         reps: exercise.reps,
@@ -146,13 +145,33 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
 
   $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "CARDIO"];
 
-  $scope.exercises = [
+  $scope.armExercises = [
     {name: "seated dumbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
     {name: "barbell curls", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
     {name: "preacher curls", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
     {name: "EZ bar curls", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
     {name: "concentration curls", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
     {name: "hammer curls", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false}
+  ];
+
+  $scope.legExercises = [
+    {name: "squats", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
+  ];
+
+  $scope.chestExercises = [
+    {name: "bench press", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
+  ];
+
+  $scope.absExercises = [
+    {name: "crunches", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
+  ];
+
+  $scope.backExercises = [
+    {name: "seated row", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
+  ];
+
+  $scope.cardioExercises = [
+    {name: "5km run", sets: 4, reps: 8, weight: 20, units: "kilograms", done: false},
   ];
 
   $scope.setDone = function(exercise) {

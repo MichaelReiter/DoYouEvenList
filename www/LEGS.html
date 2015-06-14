@@ -8,18 +8,21 @@
   	<ion-list can-swipe="true">
 
   		<!-- LIST ITEMS -->
-		  <ion-item collection-repeat="exercise in exercises" class="exerciseListItem" item-height="getItemHeight()" ui-sref="EXERCISE DETAILS" ng-click="sessionStorage.exerciseTitle = 'hi'">
-	      <ion-option-button class="button-assertive" ng-click="exercises.splice($index, 1)">
-	      	<p>&nbsp;</p>DELETE<p>&nbsp;</p>
+		  <ion-item collection-repeat="exercise in legExercises" class="exerciseListItem" item-height="getItemHeight()" ng-click="setDone(exercise)" ng-class="{done: $index.done}">
+	      <ion-option-button class="button-assertive" ng-click="legExercises.splice($index, 1)">
+	      	DELETE
 		    </ion-option-button>
-	      <ion-option-button class="button-balanced" ng-click="debugFunction()">
-	      	<p>&nbsp;&nbsp;</p>DONE<p>&nbsp;&nbsp;</p>
+	      <ion-option-button class="button-calm" ui-sref="EXERCISE DETAILS">
+	      	<p>&nbsp;&nbsp;&nbsp;</p>EDIT<p>&nbsp;&nbsp;&nbsp;</p>
 		    </ion-option-button>
-		    <div class="exerciseTitle">{{exercise.title.toUpperCase()}}</div>
+		    <div class="exerciseTitle">
+		    	<i class="{{iconSelector(exercise)}}"></i>&nbsp;&nbsp;
+		    	{{exercise.name.toUpperCase()}}
+		    </div>
 		    <div class="exerciseDetails">
-			    {{exercise.weight + " " + exercise.units.toUpperCase()}}
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{exercise.weight + " " + exercise.units.toUpperCase()}}
 			    <br>
-			    {{exercise.sets + " " + "SETS, " + exercise.reps + " " + "REPS"}}
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{exercise.sets + " " + "SETS, " + exercise.reps + " " + "REPS"}}
 		  	</div>
 		  </ion-item>
 
