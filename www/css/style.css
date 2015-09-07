@@ -16,6 +16,7 @@
 	margin: 20px;
 }
 
-ion-item.done {
-	background-color: #cccccc;
+.done {
+	color: #999999;
+  text-decoration: line-through;
 }

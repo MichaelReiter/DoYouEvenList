@@ -47,19 +47,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
 
-  /*
-  //For pulling exercises from a rails server
-
-  $http.get('http://localhost:3000/api/exercises')
-    .success(function(exercises) {
-      $scope.exercises = exercises;
-    })
-    .error(function(data) {
-      console.log('A serverside error occured.');
-    });
-  */
-
-  //For bringing up a new exercise modal pane
+  //Initialize new exercise modal pane
   $ionicModal.fromTemplateUrl('newExercise.html', function(modal) {
     $scope.newExerciseModal = modal;
   }, {
@@ -67,52 +55,64 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
     animation: 'slide-in-up'
   });
 
-  $scope.createExercise = function(exercise) {
-      
-      $scope.armExercises.push({
-        name: exercise.name,
-        sets: exercise.sets,
-        reps: exercise.reps,
-        weight: exercise.weight,
-        units: exercise.units,
-        done: false
-      });
-
-      /*
-      //For posting to a server
-      $http.post('http://localhost:3000/api/exercises', {
-        name: exercise.name,
-        sets: exercise.sets,
-        reps: exercise.reps,
-        weight: exercise.weight,
-        units: exercise.units
-      })
-        .success(function(exercises) {
-          alert("it worked");
-        })
-        .error(function(data) {
-          alert("nope");
-        });
-      */
-
-      $scope.newExerciseModal.hide();
-      exercise.name = "";
-      exercise.sets = "";
-      exercise.reps = "";
-      exercise.weight = "";
-      exercise.units = "";
-  };
-
-  $scope.submitForm = function(exercise) {
-    createExercise(exercise);
-  }
-
-  $scope.newExercise = function() {
+  $scope.newExercise = function(section) {
+    $scope.exerciseSection = section;
     $scope.newExerciseModal.show();
   };
 
   $scope.closeNewExercise = function() {
     $scope.newExerciseModal.hide();
+  };
+
+  $scope.createExercise = function(exercise) {
+    if (!exercise.sets) {
+      exercise.sets = 1;
+    }
+    if (!exercise.reps) {
+      exercise.reps = 1;
+    }
+    if (!exercise.weight) {
+      exercise.weight = "NO WEIGHT";
+      exercise.units = "";
+    }
+
+    //determine to which exercise section to push new exercise
+    switch($scope.exerciseSection) {
+      case "arms":
+        var pushSection = $scope.armExercises;
+        break;
+      case "legs":
+        var pushSection = $scope.legExercises;
+        break;
+      case "chest":
+        var pushSection = $scope.chestExercises;
+        break;
+      case "abs":
+        var pushSection = $scope.absExercises;
+        break;
+      case "back":
+        var pushSection = $scope.backExercises;
+        break;
+      case "cardio":
+        var pushSection = $scope.cardioExercises;
+        break;
+    }
+
+    pushSection.push({
+      name: exercise.name,
+      sets: exercise.sets,
+      reps: exercise.reps,
+      weight: exercise.weight,
+      units: exercise.units,
+      done: false
+    });
+
+    $scope.newExerciseModal.hide();
+    exercise.name = "";
+    exercise.sets = "";
+    exercise.reps = "";
+    exercise.weight = "";
+    exercise.units = "";
   };
 
   $scope.$on('$destroy', function() {
@@ -122,17 +122,17 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
   $scope.weightRange = [];
   for (var i = 1; i <= 500; i++) {
     $scope.weightRange.push(i);
-  }
+  };
 
   $scope.repsRange = [];
   for (var i = 1; i <= 20; i++) {
     $scope.repsRange.push(i);
-  }
+  };
 
   $scope.setsRange = [];
   for (var i = 1; i <= 10; i++) {
     $scope.setsRange.push(i);
-  }
+  };
 
   $scope.data = {
     value: 'kilograms'
@@ -174,9 +174,29 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
     {name: "5km run", sets: 1, reps: 1, weight: 0, units: "kilograms", done: false},
   ];
 
+  $scope.displaySetsAndReps = function(exercise) {
+    if (exercise.sets > 1) {
+      var sets = "SETS";
+    } else {
+      var sets = "SET";
+    }
+    if (exercise.reps > 1) {
+      var reps = "REPS";
+    } else {
+      var reps = "REP";
+    }
+    return exercise.sets + " " + sets + ", " + exercise.reps + " " + reps;
+  }
+
+  $scope.displayWeight = function(exercise) {
+    if (exercise.weight) {
+      return exercise.weight + " " + exercise.units.toUpperCase();
+    }
+  }
+
   $scope.setDone = function(exercise) {
     exercise.done = !exercise.done;
-  }
+  };
 
   $scope.iconSelector = function(input) {
     if (!input.done) {
@@ -184,25 +204,25 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
     } else {
       return "ion-android-checkbox-outline"
     }
-  }
+  };
 
   //temporary until I find a better solution
   $scope.getItemHeight = function() {
     return 90;
-  }
+  };
 
   $scope.debugFunction = function(input) {
     $ionicPopup.alert({
       title: 'DEBUG ALERT',
       template: 'Debug message here.'
     });
-  }
+  };
 
   $scope.log = function(input) {
     $ionicPopup.alert({
       title: 'DEBUG ALERT',
       template: input
     });
-  }
+  };
 
 });
