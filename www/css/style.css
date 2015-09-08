@@ -1,22 +1,22 @@
 .button.button-full.exercises {
-	height: 15.07vh;
-	width: 100%;
-	margin: 0;
+  height: 15.07vh;
+  width: 100%;
+  margin: 0;
 }
 
 .exerciseTitle, .input-label, .bold {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 .exerciseDetails {
-	color: #999999;
+  color: #999999;
 }
 
 .buttons.submit {
-	margin: 20px;
+  margin: 20px;
 }
 
 .done {
-	color: #999999;
+  color: #999999;
   text-decoration: line-through;
 }

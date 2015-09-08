@@ -1,6 +1,6 @@
 <ion-view title="DO YOU EVEN LIST">
   <ion-content class="has-header" scroll="false">
-    <button ng-repeat="area in exerciseAreas" class="button button-full button-positive exercises" ui-sref="{{area}}">
+    <button ng-repeat="area in exerciseAreas" ng-style="{height: getButtonHeight() + 'px'}" class="button button-full button-assertive exercises" ui-sref="{{area}}">
       {{area}}
     </button>
   </ion-content>

@@ -134,6 +134,8 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
     $scope.setsRange.push(i);
   };
 
+  //$scope.buttonHeight = ($window.innerHeight - 44) / 6;
+
   $scope.data = {
     value: 'kilograms'
   };
@@ -208,14 +210,16 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
 
   //temporary until I find a better solution
   $scope.getItemHeight = function() {
-    return 90;
+    return 92;
   };
 
-  $scope.debugFunction = function(input) {
-    $ionicPopup.alert({
-      title: 'DEBUG ALERT',
-      template: 'Debug message here.'
-    });
+  $scope.getButtonHeight = function() {
+    //need to account for the status bar being counted in the window height on iOS
+    if (ionic.Platform.isIOS()) {
+      return (window.innerHeight - 64) / 6;
+    } else {
+      return (window.innerHeight - 44) / 6;
+    }
   };
 
   $scope.log = function(input) {
