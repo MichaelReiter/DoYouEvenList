@@ -1,4 +1,4 @@
-var app = angular.module('dyel', ['ionic'])
+var app = angular.module('dyel', ['ionic']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
   
@@ -45,7 +45,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 });
 
-app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
+app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $ionicPlatform) {
+
+  $ionicPlatform.ready(function() {
+    if (!window.localStorage['firstLaunch']) {
+      $scope.setDefaultExercises();
+    }
+    $scope.loadData();
+
+    document.addEventListener("pause", function() {
+      $scope.saveData();
+      $scope.log("after calling save");
+    }, false);
+  });
 
   //Initialize new exercise modal pane
   $ionicModal.fromTemplateUrl('newExercise.html', function(modal) {
@@ -107,6 +119,8 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
       done: false
     });
 
+    $scope.saveData();
+
     $scope.newExerciseModal.hide();
     exercise.name = "";
     exercise.sets = "";
@@ -134,8 +148,6 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
     $scope.setsRange.push(i);
   };
 
-  //$scope.buttonHeight = ($window.innerHeight - 44) / 6;
-
   $scope.data = {
     value: 'kilograms'
   };
@@ -147,34 +159,64 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup) {
 
   $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "CARDIO"];
 
-  $scope.armExercises = [
-    {name: "seated dumbell curls", sets: 5, reps: 10, weight: 15, units: "kilograms", done: false},
-    {name: "barbell curls", sets: 5, reps: 10, weight: 30, units: "kilograms", done: false},
-    {name: "preacher curls", sets: 5, reps: 10, weight: 30, units: "kilograms", done: false},
-    {name: "EZ bar curls", sets: 5, reps: 10, weight: 30, units: "kilograms", done: false},
-    {name: "concentration curls", sets: 5, reps: 10, weight: 15, units: "kilograms", done: false},
-    {name: "hammer curls", sets: 5, reps: 10, weight: 15, units: "kilograms", done: false},
-  ];
+  $scope.saveData = function() {
+    window.localStorage['armExercises'] = JSON.stringify($scope.armExercises);
+    window.localStorage['legExercises'] = JSON.stringify($scope.legExercises);
+    window.localStorage['chestExercises'] = JSON.stringify($scope.chestExercises);
+    window.localStorage['absExercises'] = JSON.stringify($scope.absExercises);
+    window.localStorage['backExercises'] = JSON.stringify($scope.backExercises);
+    window.localStorage['cardioExercises'] = JSON.stringify($scope.cardioExercises);
+  };
 
-  $scope.legExercises = [
-    {name: "squats", sets: 5, reps: 10, weight: 100, units: "kilograms", done: false},
-  ];
+  //load stored user exercises from window.localStorage if they exist. fallback to defaults
+  $scope.loadData = function() {
+    $scope.armExercises = JSON.parse(window.localStorage['armExercises'] || '{}');
+    $scope.legExercises = JSON.parse(window.localStorage['legExercises'] || '{}');
+    $scope.chestExercises = JSON.parse(window.localStorage['chestExercises'] || '{}');
+    $scope.absExercises = JSON.parse(window.localStorage['absExercises'] || '{}');
+    $scope.backExercises = JSON.parse(window.localStorage['backExercises'] || '{}');
+    $scope.cardioExercises = JSON.parse(window.localStorage['cardioExercises'] || '{}');
+  };
 
-  $scope.chestExercises = [
-    {name: "bench press", sets: 5, reps: 10, weight: 100, units: "kilograms", done: false},
-  ];
+  $scope.setDefaultExercises = function() {
+    $scope.armExercises = [
+      {name: "seated dumbell curls", sets: 5, reps: 10, weight: 15, units: "kilograms", done: false},
+      {name: "barbell curls", sets: 5, reps: 10, weight: 30, units: "kilograms", done: false},
+      {name: "preacher curls", sets: 5, reps: 10, weight: 30, units: "kilograms", done: false},
+      {name: "EZ bar curls", sets: 5, reps: 10, weight: 30, units: "kilograms", done: false},
+      {name: "concentration curls", sets: 5, reps: 10, weight: 15, units: "kilograms", done: false},
+      {name: "hammer curls", sets: 5, reps: 10, weight: 15, units: "kilograms", done: false}
+    ];
 
-  $scope.absExercises = [
-    {name: "crunches", sets: 5, reps: 10, weight: 5, units: "kilograms", done: false},
-  ];
+    $scope.legExercises = [
+      {name: "squats", sets: 5, reps: 10, weight: 100, units: "kilograms", done: false}
+    ];
 
-  $scope.backExercises = [
-    {name: "deadlifts", sets: 5, reps: 10, weight: 100, units: "kilograms", done: false},
-  ];
+    $scope.chestExercises = [
+      {name: "bench press", sets: 5, reps: 10, weight: 100, units: "kilograms", done: false}
+    ];
 
-  $scope.cardioExercises = [
-    {name: "5km run", sets: 1, reps: 1, weight: 0, units: "kilograms", done: false},
-  ];
+    $scope.absExercises = [
+      {name: "crunches", sets: 5, reps: 10, weight: 5, units: "kilograms", done: false}
+    ];
+
+    $scope.backExercises = [
+      {name: "deadlifts", sets: 5, reps: 10, weight: 100, units: "kilograms", done: false}
+    ];
+
+    $scope.cardioExercises = [
+      {name: "5km run", sets: 1, reps: 1, weight: 0, units: "kilograms", done: false}
+    ];
+
+    window.localStorage['armExercises'] = JSON.stringify($scope.armExercises);
+    window.localStorage['legExercises'] = JSON.stringify($scope.legExercises);
+    window.localStorage['chestExercises'] = JSON.stringify($scope.chestExercises);
+    window.localStorage['absExercises'] = JSON.stringify($scope.absExercises);
+    window.localStorage['backExercises'] = JSON.stringify($scope.backExercises);
+    window.localStorage['cardioExercises'] = JSON.stringify($scope.cardioExercises);
+
+    window.localStorage['firstLaunch'] = 'no';
+  };
 
   $scope.displaySetsAndReps = function(exercise) {
     if (exercise.sets > 1) {

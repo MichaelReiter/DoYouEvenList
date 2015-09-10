@@ -9,7 +9,7 @@
 
   		<!-- LIST ITEMS -->
 		  <ion-item collection-repeat="exercise in legExercises" class="exerciseListItem" item-height="getItemHeight()" ng-click="setDone(exercise)">
-        <ion-option-button class="button-assertive" ng-click="legsExercises.splice($index, 1)">
+        <ion-option-button class="button-assertive" ng-click="legsExercises.splice($index, 1); saveData()">
           DELETE
         </ion-option-button>
         <ion-option-button class="button-calm" ui-sref="EXERCISE DETAILS">
