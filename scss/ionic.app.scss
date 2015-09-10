@@ -21,3 +21,64 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+ion-view {
+  font-family: "Roboto", "Avenir Next";
+}
+
+.button.button-full.exercises {
+  width: 100%;
+  margin: 0;
+}
+
+.exerciseTitle, .input-label, .bold {
+  font-weight: bold;
+}
+
+.exerciseDetails {
+  color: #999999;
+}
+
+.buttons.submit {
+  margin: 20px;
+}
+
+.done {
+  color: #999999;
+  text-decoration: line-through;
+}
+
+.setCounter {
+  position: relative;
+  margin-top: 45%;
+  left: 50%;
+  margin-left: -25vw;
+  width: 50vw;
+  height: 50vw;
+  background-color: #e74c3c;
+  border-radius: 50%;
+  font-size: 8em;
+  color: #ffffff;
+
+  p {
+    position: relative;
+    top: 47%;
+    left: 55%;
+    margin-left: -25%;
+    font-weight: bold;
+  }
+}
+
+.setButtons {
+  width: 150px;
+  position: relative;
+  left: 50%;
+  margin-left: -75px;
+
+  .ion-android-refresh {
+    float: left;
+  }
+
+  .ion-android-add-circle {
+    float: right;
+  }
+}

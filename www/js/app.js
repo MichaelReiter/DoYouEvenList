@@ -30,9 +30,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: "/",
     templateUrl: 'back.html'
   })
-  .state('CARDIO', {
+  .state('SETS', {
     url: "/",
-    templateUrl: 'cardio.html'
+    templateUrl: 'sets.html'
   })
   .state('NEW EXERCISE', {
     url: "/",
@@ -55,7 +55,6 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
 
     document.addEventListener("pause", function() {
       $scope.saveData();
-      $scope.log("after calling save");
     }, false);
   });
 
@@ -157,7 +156,9 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
     "pounds"
   ];
 
-  $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "CARDIO"];
+  $scope.setCounter = 0;
+
+  $scope.exerciseAreas = ["ARMS", "LEGS", "CHEST", "ABS", "BACK", "SETS"];
 
   $scope.saveData = function() {
     window.localStorage['armExercises'] = JSON.stringify($scope.armExercises);
@@ -249,6 +250,16 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
       return "ion-android-checkbox-outline"
     }
   };
+
+  $scope.addSet = function() {
+    if ($scope.setCounter < 9) {
+      $scope.setCounter++;
+    }
+  }
+
+  $scope.resetSet = function() {
+    $scope.setCounter = 0;
+  }
 
   //temporary until I find a better solution
   $scope.getItemHeight = function() {

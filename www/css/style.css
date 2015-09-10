@@ -1,5 +1,4 @@
 .button.button-full.exercises {
-  height: 15.07vh;
   width: 100%;
   margin: 0;
 }
@@ -19,4 +18,20 @@
 .done {
   color: #999999;
   text-decoration: line-through;
+}
+
+.setCounter {
+  position: relative;
+  left: 50%;
+  margin-left: -25vw;
+  width: 50vw;
+  height: 50vw;
+  background-color: #e74c3c;
+  border-radius: 50%;
+  font-size: 8em;
+  color: #ffffff;
+}
+
+.setCounter p {
+  color: black;
 }
