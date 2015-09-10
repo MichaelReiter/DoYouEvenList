@@ -47,29 +47,33 @@ ion-view {
   text-decoration: line-through;
 }
 
+.counter {
+  height: 300px;
+}
+
 .setCounter {
   position: relative;
-  margin-top: 45%;
+  margin-top: 20vh;
   left: 50%;
-  margin-left: -25vw;
-  width: 50vw;
-  height: 50vw;
+  margin-left: -100px;
+  width: 200px;
+  height: 200px;
   background-color: #e74c3c;
   border-radius: 50%;
-  font-size: 8em;
+  font-size: 125px;
   color: #ffffff;
 
   p {
     position: relative;
-    top: 45%;
-    left: 57%;
-    margin-left: -25%;
+    top: 95px;
+    left: 60px;
     font-weight: bold;
   }
 }
 
 .setButtons {
   width: 150px;
+  height: 50px;
   position: relative;
   left: 50%;
   margin-left: -75px;
