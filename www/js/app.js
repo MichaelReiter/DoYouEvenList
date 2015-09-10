@@ -104,9 +104,6 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
       case "back":
         var pushSection = $scope.backExercises;
         break;
-      case "cardio":
-        var pushSection = $scope.cardioExercises;
-        break;
     }
 
     pushSection.push({
@@ -166,7 +163,6 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
     window.localStorage['chestExercises'] = JSON.stringify($scope.chestExercises);
     window.localStorage['absExercises'] = JSON.stringify($scope.absExercises);
     window.localStorage['backExercises'] = JSON.stringify($scope.backExercises);
-    window.localStorage['cardioExercises'] = JSON.stringify($scope.cardioExercises);
   };
 
   //load stored user exercises from window.localStorage if they exist. fallback to defaults
@@ -176,7 +172,6 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
     $scope.chestExercises = JSON.parse(window.localStorage['chestExercises'] || '{}');
     $scope.absExercises = JSON.parse(window.localStorage['absExercises'] || '{}');
     $scope.backExercises = JSON.parse(window.localStorage['backExercises'] || '{}');
-    $scope.cardioExercises = JSON.parse(window.localStorage['cardioExercises'] || '{}');
   };
 
   $scope.setDefaultExercises = function() {
@@ -205,16 +200,11 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
       {name: "deadlifts", sets: 5, reps: 10, weight: 100, units: "kilograms", done: false}
     ];
 
-    $scope.cardioExercises = [
-      {name: "5km run", sets: 1, reps: 1, weight: 0, units: "kilograms", done: false}
-    ];
-
     window.localStorage['armExercises'] = JSON.stringify($scope.armExercises);
     window.localStorage['legExercises'] = JSON.stringify($scope.legExercises);
     window.localStorage['chestExercises'] = JSON.stringify($scope.chestExercises);
     window.localStorage['absExercises'] = JSON.stringify($scope.absExercises);
     window.localStorage['backExercises'] = JSON.stringify($scope.backExercises);
-    window.localStorage['cardioExercises'] = JSON.stringify($scope.cardioExercises);
 
     window.localStorage['firstLaunch'] = 'no';
   };
