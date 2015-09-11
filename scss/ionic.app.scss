@@ -52,39 +52,27 @@ ion-view {
 }
 
 .setCounter {
-  position: relative;
-  margin-top: 20vh;
+  position: absolute;
+  top: 25%;
   left: 50%;
-  margin-left: -100px;
-  width: 200px;
-  height: 200px;
+  margin-left: -0.8em;
+  width: 1.6em;
+  height: 1.6em;
   background-color: #e74c3c;
   border-radius: 50%;
-  font-size: 125px;
+  font-size: 8em;
   color: #ffffff;
-  transition-duration: 0.1s;
+  transition-duration: 0.05s;
 
   p {
     position: relative;
-    top: 95px;
-    left: 60px;
+    top: 0.75em;
+    left: 0.5em;
     font-weight: bold;
   }
 
   &:active {
     background-color: #ff634e;
-    width: 220px;
-    height: 220px;
-    margin-left: -110px;
-    margin-top: 19vh;
-    font-size: 140px;
-
-    p {
-      top: 105px;
-      left: 65px;
-      font-weight: bold;
-      transition: none;
-    }
   }
 }
 
@@ -94,6 +82,7 @@ ion-view {
   position: relative;
   left: 50%;
   margin-left: -75px;
+  margin-top: 90%;
 
   .ion-android-refresh {
     float: left;
