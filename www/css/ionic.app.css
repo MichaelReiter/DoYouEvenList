@@ -7708,12 +7708,25 @@ ion-view {
   background-color: #e74c3c;
   border-radius: 50%;
   font-size: 125px;
-  color: #ffffff; }
+  color: #ffffff;
+  transition-duration: 0.1s; }
   .setCounter p {
     position: relative;
     top: 95px;
     left: 60px;
     font-weight: bold; }
+  .setCounter:active {
+    background-color: #ff634e;
+    width: 220px;
+    height: 220px;
+    margin-left: -110px;
+    margin-top: 19vh;
+    font-size: 140px; }
+    .setCounter:active p {
+      top: 105px;
+      left: 65px;
+      font-weight: bold;
+      transition: none; }
 
 .setButtons {
   width: 150px;
@@ -7723,5 +7736,5 @@ ion-view {
   margin-left: -75px; }
   .setButtons .ion-android-refresh {
     float: left; }
-  .setButtons .ion-android-add-circle {
+  .setButtons .ion-android-remove-circle {
     float: right; }

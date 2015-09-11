@@ -247,6 +247,12 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
     }
   }
 
+  $scope.subtractSet = function() {
+    if ($scope.setCounter > 0) {
+      $scope.setCounter--;
+    }
+  }
+
   $scope.resetSet = function() {
     $scope.setCounter = 0;
   }

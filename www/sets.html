@@ -2,14 +2,14 @@
 
   <ion-content class="has-header" scroll="false">
     <div class="counter">
-      <div class="setCounter">
+      <div class="setCounter" ng-mousedown="addSet()">
         <p>
           {{setCounter}}
         </p>
       </div>
       <div class="setButtons">
         <a class="button button-icon icon ion-android-refresh" ng-click="resetSet()"></a>
-        <a class="button button-icon icon ion-android-add-circle" ng-click="addSet()"></a>
+        <a class="button button-icon icon ion-android-remove-circle" ng-click="subtractSet()"></a>
       </div>
     </div>
   </ion-content>

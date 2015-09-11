@@ -62,12 +62,29 @@ ion-view {
   border-radius: 50%;
   font-size: 125px;
   color: #ffffff;
+  transition-duration: 0.1s;
 
   p {
     position: relative;
     top: 95px;
     left: 60px;
     font-weight: bold;
+  }
+
+  &:active {
+    background-color: #ff634e;
+    width: 220px;
+    height: 220px;
+    margin-left: -110px;
+    margin-top: 19vh;
+    font-size: 140px;
+
+    p {
+      top: 105px;
+      left: 65px;
+      font-weight: bold;
+      transition: none;
+    }
   }
 }
 
@@ -82,7 +99,7 @@ ion-view {
     float: left;
   }
 
-  .ion-android-add-circle {
+  .ion-android-remove-circle {
     float: right;
   }
 }
