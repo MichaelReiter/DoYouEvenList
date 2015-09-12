@@ -17,6 +17,7 @@ $dark:                            #444 !default;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
+$calm: #ff634e;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
@@ -82,7 +83,7 @@ ion-view {
   position: relative;
   left: 50%;
   margin-left: -75px;
-  margin-top: 90%;
+  margin-top: 95%;
 
   .ion-android-refresh {
     float: left;
