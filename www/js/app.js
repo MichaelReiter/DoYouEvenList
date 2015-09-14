@@ -69,6 +69,7 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
   $scope.newExercise = function(section) {
     $scope.exerciseSection = section;
     $scope.newExerciseModal.show();
+    $scope.defaultExerciseDetails();
   };
 
   $scope.closeNewExercise = function() {
@@ -77,14 +78,14 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
 
   $scope.createExercise = function(exercise) {
     if (!exercise.sets) {
-      exercise.sets = 1;
+      exercise.sets = 6;
     }
     if (!exercise.reps) {
-      exercise.reps = 1;
+      exercise.reps = 10;
     }
     if (!exercise.weight) {
-      exercise.weight = "NO WEIGHT";
-      exercise.units = "";
+      exercise.weight = 30;
+      exercise.units = "pounds";
     }
 
     //determine to which exercise section to push new exercise
@@ -176,28 +177,28 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
 
   $scope.setDefaultExercises = function() {
     $scope.armExercises = [
-      {name: "seated dumbell curls", sets: 5, reps: 10, weight: 15, units: "kilograms", done: false},
-      {name: "barbell curls", sets: 5, reps: 10, weight: 30, units: "kilograms", done: false},
-      {name: "preacher curls", sets: 5, reps: 10, weight: 30, units: "kilograms", done: false},
-      {name: "EZ bar curls", sets: 5, reps: 10, weight: 30, units: "kilograms", done: false},
-      {name: "concentration curls", sets: 5, reps: 10, weight: 15, units: "kilograms", done: false},
-      {name: "hammer curls", sets: 5, reps: 10, weight: 15, units: "kilograms", done: false}
+      {name: "seated dumbell curls", sets: 6, reps: 10, weight: 15, units: "kilograms", done: false},
+      {name: "barbell curls", sets: 6, reps: 10, weight: 30, units: "kilograms", done: false},
+      {name: "preacher curls", sets: 6, reps: 10, weight: 30, units: "kilograms", done: false},
+      {name: "EZ bar curls", sets: 6, reps: 10, weight: 30, units: "kilograms", done: false},
+      {name: "concentration curls", sets: 6, reps: 10, weight: 15, units: "kilograms", done: false},
+      {name: "hammer curls", sets: 6, reps: 10, weight: 15, units: "kilograms", done: false}
     ];
 
     $scope.legExercises = [
-      {name: "squats", sets: 5, reps: 10, weight: 100, units: "kilograms", done: false}
+      {name: "squats", sets: 6, reps: 10, weight: 100, units: "kilograms", done: false}
     ];
 
     $scope.chestExercises = [
-      {name: "bench press", sets: 5, reps: 10, weight: 100, units: "kilograms", done: false}
+      {name: "bench press", sets: 6, reps: 10, weight: 100, units: "kilograms", done: false}
     ];
 
     $scope.absExercises = [
-      {name: "crunches", sets: 5, reps: 10, weight: 5, units: "kilograms", done: false}
+      {name: "crunches", sets: 6, reps: 10, weight: 5, units: "kilograms", done: false}
     ];
 
     $scope.backExercises = [
-      {name: "deadlifts", sets: 5, reps: 10, weight: 100, units: "kilograms", done: false}
+      {name: "deadlifts", sets: 6, reps: 10, weight: 100, units: "kilograms", done: false}
     ];
 
     window.localStorage['armExercises'] = JSON.stringify($scope.armExercises);
@@ -207,6 +208,28 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
     window.localStorage['backExercises'] = JSON.stringify($scope.backExercises);
 
     window.localStorage['firstLaunch'] = 'no';
+  };
+
+  $scope.setCounterTutorial = function() {
+    //only display on first viewing
+    if (!window.localStorage['tutorial']) {
+      window.localStorage['tutorial'] = 'no';
+      $ionicPopup.alert({
+        title: 'TUTORIAL',
+        template: "Tap the circle to increment the set counter. Tap the minus to decrement. Tap the arrow to reset."
+      });
+    }
+  };
+
+  $scope.defaultExerciseDetails = function() {
+    //only display on first viewing
+    if (!window.localStorage['exerciseDefaults']) {
+      window.localStorage['exerciseDefaults'] = 'no';
+      $ionicPopup.alert({
+        title: 'BE A MAN',
+        template: "If no exercise details are specified, it will default to 6 sets of 10 reps at 30 pounds."
+      });
+    }
   };
 
   $scope.displaySetsAndReps = function(exercise) {
