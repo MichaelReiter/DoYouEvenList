@@ -38,14 +38,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: "/",
     templateUrl: 'newExercise.html'
   })
-  .state('EXERCISE DETAILS', {
-    url: "/",
-    templateUrl: 'exerciseDetails.html'
+  .state('EDIT', {
+    url: "/edit?exerciseName&exerciseWeight&exerciseUnits&exerciseSets&exerciseReps&pushIndex&editSection",
+    templateUrl: 'exerciseDetails.html',
+    controller: function($scope, $stateParams) {
+      $scope.exerciseName = $stateParams.exerciseName;
+      $scope.exerciseWeight = $stateParams.exerciseWeight;
+      $scope.exerciseUnits = $stateParams.exerciseUnits;
+      $scope.exerciseSets = $stateParams.exerciseSets;
+      $scope.exerciseReps = $stateParams.exerciseReps;
+      $scope.pushIndex = $stateParams.pushIndex;
+      $scope.editSection = $stateParams.editSection;
+    }
   });
 
 });
 
-app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $ionicPlatform) {
+app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $ionicPlatform, $stateParams, $ionicNavBarDelegate) {
 
   $ionicPlatform.ready(function() {
     if (!window.localStorage['firstLaunch']) {
@@ -66,6 +75,17 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
     animation: 'slide-in-up'
   });
 
+  $ionicModal.fromTemplateUrl('exerciseDetails.html', function(editModal) {
+    $scope.editExerciseModal = editModal;
+  }, {
+    scope: $scope,
+    animation: 'slide-in-up'
+  });
+
+  $scope.exerciseToEdit = null;
+  $scope.pushIndex = null;
+  $scope.editSection = null;
+
   $scope.newExercise = function(section) {
     $scope.exerciseSection = section;
     $scope.newExerciseModal.show();
@@ -76,7 +96,7 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
     $scope.newExerciseModal.hide();
   };
 
-  $scope.createExercise = function(exercise) {
+  $scope.saveEditExercise = function(index, exercise, section) {
     if (!exercise.sets) {
       exercise.sets = 6;
     }
@@ -88,8 +108,14 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
       exercise.units = "pounds";
     }
 
+    var pushSection = $scope.setPushSection(section);
+    pushSection[index] = exercise;
+    $ionicNavBarDelegate.back();
+  };
+
+  $scope.setPushSection = function(input) {
     //determine to which exercise section to push new exercise
-    switch($scope.exerciseSection) {
+    switch(input) {
       case "arms":
         var pushSection = $scope.armExercises;
         break;
@@ -106,6 +132,22 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
         var pushSection = $scope.backExercises;
         break;
     }
+    return pushSection;
+  }
+
+  $scope.createExercise = function(exercise) {
+    if (!exercise.sets) {
+      exercise.sets = 6;
+    }
+    if (!exercise.reps) {
+      exercise.reps = 10;
+    }
+    if (!exercise.weight) {
+      exercise.weight = 30;
+      exercise.units = "pounds";
+    }
+
+    var pushSection = $scope.setPushSection($scope.exerciseSection);
 
     pushSection.push({
       name: exercise.name,
@@ -227,7 +269,7 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
       window.localStorage['exerciseDefaults'] = 'no';
       $ionicPopup.alert({
         title: 'BE A MAN',
-        template: "If no exercise details are specified, it will default to 6 sets of 10 reps at 30 pounds."
+        template: "All exercises default to 6 sets of 10 reps at 30 pounds unless otherwise specified."
       });
     }
   };
@@ -248,6 +290,9 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
 
   $scope.displayWeight = function(exercise) {
     if (exercise.weight) {
+      if (exercise.weight == 1) {
+        return exercise.weight + " " + exercise.units.substring(0,exercise.units.length-1).toUpperCase();
+      }
       return exercise.weight + " " + exercise.units.toUpperCase();
     }
   }

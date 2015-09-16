@@ -7729,3 +7729,9 @@ ion-view {
     float: left; }
   .setButtons .ion-android-remove-circle {
     float: right; }
+
+.swipeButton {
+  width: 50px; }
+
+.hidden {
+  display: none; }

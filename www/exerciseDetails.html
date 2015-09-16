@@ -1,5 +1,63 @@
-<ion-view title="{{sessionStorage.exerciseTitle}}">
-  <ion-content class="has-header" scroll="false">
-  	some content here
+<ion-view title="EDIT EXERCISE">
+  <ion-content class="has-header" has-bouncing="false" ng-init="exercise.name = exerciseName; exercise.weight = exerciseWeight; exercise.units = exerciseUnits; exercise.sets = exerciseSets; exercise.reps = exerciseReps;">
+    
+    <!-- FORM -->
+    <form ng-submit="saveEditExercise(pushIndex, exercise, editSection)">
+      <div class="list">
+
+        <!-- NAME -->
+        <label class="item item-input item-inline-label">
+          <span class="input-label">NAME</span>
+            <span class="hidden"></span>
+          <input type="text" ng-model="exercise.name">
+        </label>
+
+        <!-- WEIGHT -->
+        <label class="item item-input item-select">
+          <div class="input-label">
+            WEIGHT
+          </div>
+          <select ng-model="exercise.weight">
+            <option ng-repeat="i in weightRange">{{i}}</option>
+          </select>
+        </label>
+
+        <!-- UNITS -->
+        <label class="item item-input item-select">
+          <div class="input-label">
+            UNITS
+          </div>
+            <select ng-model="exercise.units">
+              <option>KILOGRAMS</option>
+              <option>POUNDS</option>
+            </select>
+        </label>
+
+        <!-- REPS -->
+        <label class="item item-input item-select">
+          <div class="input-label">
+            REPS
+          </div>
+          <select ng-model="exercise.reps">
+            <option ng-repeat="j in repsRange">{{j}}</option>
+          </select>
+        </label>
+
+        <!-- SETS -->
+        <label class="item item-input item-select">
+          <div class="input-label">
+            SETS
+          </div>
+          <select ng-model="exercise.sets">
+            <option ng-repeat="k in setsRange">{{k}}</option>
+          </select>
+        </label>
+
+        <!-- SUBMIT BUTTON -->
+        <div class="buttons submit">
+          <button type="submit" class="button button-block button-assertive">SAVE CHANGES</button>
+        </div>
+      </div>
+    </form>
   </ion-content>
 </ion-view>

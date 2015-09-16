@@ -9,11 +9,11 @@
 
   		<!-- LIST ITEMS -->
 		  <ion-item collection-repeat="exercise in armExercises" class="exerciseListItem" item-height="getItemHeight()" ng-click="setDone(exercise)">
+        <ion-option-button class="button-calm" ng-click="editExerciseDetails()" ui-sref="EDIT({exerciseName: armExercises[$index].name.toUpperCase(), exerciseWeight: armExercises[$index].weight, exerciseUnits: armExercises[$index].units.toUpperCase(), exerciseSets: armExercises[$index].sets, exerciseReps: armExercises[$index].reps, pushIndex: $index, editSection: 'arms'})">
+          <div class="swipeButton"><i class="icon ion-edit"></i></div>
+        </ion-option-button>
 	      <ion-option-button class="button-assertive" ng-click="armExercises.splice($index, 1); saveData()">
-	      	DELETE
-		    </ion-option-button>
-	      <ion-option-button class="button-calm" ui-sref="EXERCISE DETAILS">
-	      	<p>&nbsp;&nbsp;&nbsp;</p>EDIT<p>&nbsp;&nbsp;&nbsp;</p>
+	      	<div class="swipeButton"><i class="icon ion-trash-a"></i></div>
 		    </ion-option-button>
 		    <div class="exerciseTitle">
 		    	<i class="{{iconSelector(exercise)}}"></i>&nbsp;&nbsp;

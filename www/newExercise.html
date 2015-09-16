@@ -1,4 +1,4 @@
-<div class="modal">
+<div class="modal" ng-init="exercise.weight = 30; exercise.units = 'POUNDS'; exercise.sets = 6; exercise.reps = 10">
   <ion-header-bar class="bar-dark" align-title="center">
     <h1 class="title">NEW EXERCISE</h1>
     <div class="buttons">
@@ -17,7 +17,7 @@
 		  		<!-- NAME -->
 				  <label class="item item-input item-inline-label">
 				    <span class="input-label">NAME</span>
-				    <input type="text" placeholder="BICEP CURLS" ng-model="exercise.name">
+				    <input type="text" placeholder="BICEP CURLS BRO" ng-model="exercise.name">
 				  </label>
 
 				  <!-- WEIGHT -->
