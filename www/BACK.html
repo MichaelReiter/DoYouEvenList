@@ -1,19 +1,19 @@
-<ion-view title="BACK">
+<ion-view title="BACK" ng-init="listTutorial()">
 
-	<ion-nav-buttons side="secondary">
-    <button class="button button-icon ion-ios-plus-empty" ng-click="newExercise('back')">
+  <ion-nav-buttons side="secondary">
+    <button class="button button-icon ion-ios-plus-empty" ui-sref="NEW({newSection: 'back'})">
     </button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-  	<ion-list can-swipe="true">
+    <ion-list can-swipe="true">
 
-  		<!-- LIST ITEMS -->
-		  <ion-item collection-repeat="exercise in backExercises" class="exerciseListItem" item-height="getItemHeight()" ng-click="setDone(exercise)">
-        <ion-option-button class="button-assertive" ng-click="backExercises.splice($index, 1); saveData()">
-          DELETE
+      <!-- LIST ITEMS -->
+      <ion-item collection-repeat="exercise in backExercises" class="exerciseListItem" item-height="getItemHeight()" ng-click="setDone(exercise)">
+        <ion-option-button class="button-calm" ng-click="editExerciseDetails()" ui-sref="EDIT({exerciseName: backExercises[$index].name.toUpperCase(), exerciseWeight: backExercises[$index].weight, exerciseUnits: backExercises[$index].units.toUpperCase(), exerciseSets: backExercises[$index].sets, exerciseReps: backExercises[$index].reps, pushIndex: $index, editSection: 'back'})">
+          <div class="swipeButton"><i class="icon ion-edit"></i></div>
         </ion-option-button>
-        <ion-option-button class="button-calm" ui-sref="EXERCISE DETAILS">
-          <p>&nbsp;&nbsp;&nbsp;</p>EDIT<p>&nbsp;&nbsp;&nbsp;</p>
+        <ion-option-button class="button-assertive" ng-click="backExercises.splice($index, 1); saveData()">
+          <div class="swipeButton"><i class="icon ion-trash-a"></i></div>
         </ion-option-button>
         <div class="exerciseTitle">
           <i class="{{iconSelector(exercise)}}"></i>&nbsp;&nbsp;
@@ -28,6 +28,6 @@
         </div>
       </ion-item>
 
-		</ion-list>
+    </ion-list>
   </ion-content>
 </ion-view>

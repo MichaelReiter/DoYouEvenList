@@ -34,9 +34,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: "/",
     templateUrl: 'sets.html'
   })
-  .state('NEW EXERCISE', {
-    url: "/",
-    templateUrl: 'newExercise.html'
+  .state('NEW', {
+    url: "/new?newSection",
+    templateUrl: 'newExercise.html',
+    controller: function($scope, $stateParams) {
+      $scope.newSection = $stateParams.newSection;
+    }
   })
   .state('EDIT', {
     url: "/edit?exerciseName&exerciseWeight&exerciseUnits&exerciseSets&exerciseReps&pushIndex&editSection",
@@ -99,7 +102,6 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
 
   $scope.newExercise = function(section) {
     $scope.exerciseSection = section;
-    $scope.newExerciseModal.show();
     $scope.defaultExerciseDetails();
   };
 
@@ -146,7 +148,7 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
     return pushSection;
   }
 
-  $scope.createExercise = function(exercise) {
+  $scope.createExercise = function(exercise, section) {
     if (!exercise.sets) {
       exercise.sets = 6;
     }
@@ -158,7 +160,7 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
       exercise.units = "pounds";
     }
 
-    var pushSection = $scope.setPushSection($scope.exerciseSection);
+    var pushSection = $scope.setPushSection(section);
 
     pushSection.push({
       name: exercise.name,
@@ -171,7 +173,8 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
 
     $scope.saveData();
 
-    $scope.newExerciseModal.hide();
+    // $scope.newExerciseModal.hide();
+    $ionicNavBarDelegate.back();
     exercise.name = "";
     exercise.sets = "";
     exercise.reps = "";
