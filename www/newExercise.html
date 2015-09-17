@@ -1,72 +1,72 @@
-<div class="modal" ng-init="exercise.weight = 30; exercise.units = 'POUNDS'; exercise.sets = 6; exercise.reps = 10">
+<div class="modal" ng-controller="NewCtrl as exercise">
   <ion-header-bar class="bar-dark" align-title="center">
     <h1 class="title">NEW EXERCISE</h1>
     <div class="buttons">
     </div>
     <div class="buttons">
-    	<button class="button button-icon ion-ios-arrow-back" ng-click="closeNewExercise()"></button>
+      <button class="button button-icon ion-ios-arrow-back" ng-click="closeNewExercise()"></button>
     </div>
   </ion-header-bar>
   <ion-view>
-	  <ion-content class="has-header" has-bouncing="false">
-		  
-	  	<!-- FORM -->
-		  <form ng-submit="createExercise(exercise)">
-		  	<div class="list">
+    <ion-content class="has-header" has-bouncing="false">
+    
+      <!-- FORM -->
+      <form ng-submit="createExercise(exercise)">
+        <div class="list">
 
-		  		<!-- NAME -->
-				  <label class="item item-input item-inline-label">
-				    <span class="input-label">NAME</span>
-				    <input type="text" placeholder="BICEP CURLS BRO" ng-model="exercise.name">
-				  </label>
+          <!-- NAME -->
+          <label class="item item-input item-inline-label">
+            <span class="input-label">NAME</span>
+            <input type="text" placeholder="BICEP CURLS BRO" ng-model="exercise.name">
+          </label>
 
-				  <!-- WEIGHT -->
-					<label class="item item-input item-select">
-				    <div class="input-label">
-				     	WEIGHT
-				    </div>
-				    <select ng-model="exercise.weight">
-				      <option ng-repeat="i in weightRange">{{i}}</option>
-				    </select>
-				  </label>
+          <!-- WEIGHT -->
+          <label class="item item-input item-select">
+            <div class="input-label">
+              WEIGHT
+            </div>
+            <select ng-model="exercise.weight">
+              <option ng-repeat="i in weightRange">{{i}}</option>
+            </select>
+          </label>
 
-				  <!-- UNITS -->
-					<label class="item item-input item-select">
-				    <div class="input-label">
-				     	UNITS
-				    </div>
-							<select ng-model="exercise.units">
-							  <option>KILOGRAMS</option>
-							  <option>POUNDS</option>
-							</select>
-				  </label>
+          <!-- UNITS -->
+          <label class="item item-input item-select">
+            <div class="input-label">
+              UNITS
+            </div>
+              <select ng-model="exercise.units">
+                <option>KILOGRAMS</option>
+                <option>POUNDS</option>
+              </select>
+          </label>
 
-					<!-- REPS -->
-					<label class="item item-input item-select">
-				    <div class="input-label">
-				     	REPS
-				    </div>
-				    <select ng-model="exercise.reps">
-				      <option ng-repeat="j in repsRange">{{j}}</option>
-				    </select>
-				  </label>
+          <!-- SETS -->
+          <label class="item item-input item-select">
+            <div class="input-label">
+              SETS
+            </div>
+            <select ng-model="exercise.sets">
+              <option ng-repeat="k in setsRange">{{k}}</option>
+            </select>
+          </label>
 
-				  <!-- SETS -->
-					<label class="item item-input item-select">
-				    <div class="input-label">
-				     	SETS
-				    </div>
-				    <select ng-model="exercise.sets">
-				      <option ng-repeat="k in setsRange">{{k}}</option>
-				    </select>
-				  </label>
-				</div>
+          <!-- REPS -->
+          <label class="item item-input item-select">
+            <div class="input-label">
+              REPS
+            </div>
+            <select ng-model="exercise.reps">
+              <option ng-repeat="j in repsRange">{{j}}</option>
+            </select>
+          </label>
+        </div>
 
-				<!-- SUBMIT BUTTON -->
-				<div class="buttons submit">
-					<button type="submit" class="button button-block button-assertive">ADD EXERCISE</button>
-				</div>
-			</form>
-	  </ion-content>
-	</ion-view>
+        <!-- SUBMIT BUTTON -->
+        <div class="buttons submit">
+          <button type="submit" class="button button-block button-assertive">ADD EXERCISE</button>
+        </div>
+      </form>
+    </ion-content>
+  </ion-view>
 </div>

@@ -54,6 +54,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 });
 
+app.controller('NewCtrl', function($scope) {
+
+    var exercise = this;
+    exercise.name = '';
+    exercise.weight = 30;
+    exercise.units = 'POUNDS';
+    exercise.sets = 6;
+    exercise.reps = 10;
+
+});
+
 app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $ionicPlatform, $stateParams, $ionicNavBarDelegate) {
 
   $ionicPlatform.ready(function() {
@@ -273,6 +284,18 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
       });
     }
   };
+
+  $scope.listTutorial = function() {
+    //only display on first section viewing
+    if (!window.localStorage['firstListView']) {
+      window.localStorage['firstListView'] = 'no';
+      $ionicPopup.alert({
+        title: 'TUTORIAL',
+        template: "In each section you'll find a list of exercises. Swipe left on an exercise to edit or delete it."
+      });
+    }
+  };
+
 
   $scope.displaySetsAndReps = function(exercise) {
     if (exercise.sets > 1) {

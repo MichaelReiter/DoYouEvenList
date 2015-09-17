@@ -33,16 +33,6 @@
             </select>
         </label>
 
-        <!-- REPS -->
-        <label class="item item-input item-select">
-          <div class="input-label">
-            REPS
-          </div>
-          <select ng-model="exercise.reps">
-            <option ng-repeat="j in repsRange">{{j}}</option>
-          </select>
-        </label>
-
         <!-- SETS -->
         <label class="item item-input item-select">
           <div class="input-label">
@@ -50,6 +40,16 @@
           </div>
           <select ng-model="exercise.sets">
             <option ng-repeat="k in setsRange">{{k}}</option>
+          </select>
+        </label>
+
+        <!-- REPS -->
+        <label class="item item-input item-select">
+          <div class="input-label">
+            REPS
+          </div>
+          <select ng-model="exercise.reps">
+            <option ng-repeat="j in repsRange">{{j}}</option>
           </select>
         </label>
 
