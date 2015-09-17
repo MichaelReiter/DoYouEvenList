@@ -68,7 +68,7 @@ app.controller('NewCtrl', function($scope) {
 
 });
 
-app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $ionicPlatform, $stateParams, $ionicNavBarDelegate) {
+app.controller('IndexCtrl', function($scope, $http, $ionicPopup, $ionicPlatform, $stateParams, $ionicNavBarDelegate) {
 
   $ionicPlatform.ready(function() {
     if (!window.localStorage['firstLaunch']) {
@@ -81,21 +81,6 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
     }, false);
   });
 
-  //Initialize new exercise modal pane
-  $ionicModal.fromTemplateUrl('newExercise.html', function(modal) {
-    $scope.newExerciseModal = modal;
-  }, {
-    scope: $scope,
-    animation: 'slide-in-up'
-  });
-
-  $ionicModal.fromTemplateUrl('exerciseDetails.html', function(editModal) {
-    $scope.editExerciseModal = editModal;
-  }, {
-    scope: $scope,
-    animation: 'slide-in-up'
-  });
-
   $scope.exerciseToEdit = null;
   $scope.pushIndex = null;
   $scope.editSection = null;
@@ -103,10 +88,6 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
   $scope.newExercise = function(section) {
     $scope.exerciseSection = section;
     $scope.defaultExerciseDetails();
-  };
-
-  $scope.closeNewExercise = function() {
-    $scope.newExerciseModal.hide();
   };
 
   $scope.saveEditExercise = function(index, exercise, section) {
@@ -173,7 +154,6 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
 
     $scope.saveData();
 
-    // $scope.newExerciseModal.hide();
     $ionicNavBarDelegate.back();
     exercise.name = "";
     exercise.sets = "";
@@ -181,10 +161,6 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
     exercise.weight = "";
     exercise.units = "";
   };
-
-  $scope.$on('$destroy', function() {
-    $scope.newExerciseModal.remove();
-  });
 
   $scope.weightRange = [];
   for (var i = 1; i <= 500; i++) {
@@ -298,7 +274,6 @@ app.controller('IndexCtrl', function($scope, $http, $ionicModal, $ionicPopup, $i
       });
     }
   };
-
 
   $scope.displaySetsAndReps = function(exercise) {
     if (exercise.sets > 1) {
