@@ -1,5 +1,17 @@
-# DoYouEvenList
-A hybrid mobile app built with HTML5, CSS, JavaScript, AngularJS, Apache Cordova and the Ionic framework.
+# Do You Even List
 
-Design idea:
-<img src="https://github.com/MichaelReiter/DoYouEvenList/raw/master/design/DYEL%20demo.png" />
+A hybrid iOS/Android app for tracking workouts. Records exercise details, counts sets, repetitions, and weight.
+
+Built with HTML, CSS, JavaScript, AngularJS, Ionic Framework and Apache Cordova.
+
+## Download
+
+Do You Even List is available for free on the [App Store](https://itunes.apple.com/ca/app/id1037925374) and the [Google Play Store](https://play.google.com/store/apps/details?id=com.michaelreiter.dyel)
+
+## Screenshots
+
+![Screenshot](/resources/screenshots.png)
+
+## License
+
+MIT
